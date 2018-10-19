@@ -89,9 +89,10 @@ sudo sed -ri '/\sswap\s/s/^#?/#/' /etc/fstab
 #This was a way of doing it, but opted with creating the file with the wanted content.
 #cp /run/systemd/network/10-netplan-ens* /etc/systemd/network/10-netplan-ens.network
 #sed -i -e '/\[DHCP\]/a' -e 'ClientIdentifier=mac' /etc/systemd/network/10-netplan-ens32.network
-cat <<EOT > /etc/systemd/network/10-netplan-ens.network
+#This will only work for ens32 interface
+cat <<EOT > /etc/systemd/network/10-netplan-ens32.network
 [Match]
-Name=ens*
+Name=ens32
 
 [Network]
 DHCP=ipv4
