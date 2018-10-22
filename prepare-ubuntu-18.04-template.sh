@@ -100,6 +100,7 @@ DHCP=ipv4
 [DHCP]
 UseMTU=true
 RouteMetric=100
+ClientIdentifier=mac
 EOT
 
 # cleans out all of the cloud-init cache / logs - this is mainly cleaning out networking info
