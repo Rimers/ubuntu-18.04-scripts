@@ -87,21 +87,8 @@ sudo sed -ri '/\sswap\s/s/^#?/#/' /etc/fstab
 # Testing another option.
 # we asume the nic is named ens*
 #This was a way of doing it, but opted with creating the file with the wanted content.
-#cp /run/systemd/network/10-netplan-ens* /etc/systemd/network/10-netplan-ens.network
-#sed -i -e '/\[DHCP\]/a' -e 'ClientIdentifier=mac' /etc/systemd/network/10-netplan-ens32.network
-#This will only work for ens32 interface
-cat <<EOT > /etc/systemd/network/10-netplan-ens32.network
-[Match]
-Name=ens32
-
-[Network]
-DHCP=ipv4
-
-[DHCP]
-UseMTU=true
-RouteMetric=100
-ClientIdentifier=mac
-EOT
+cp /run/systemd/network/10-netplan-ens* /etc/systemd/network/
+sed -i -e '/\[DHCP\]/a\' -e 'ClientIdentifier=mac' /etc/systemd/network/10-netplan-*
 
 # cleans out all of the cloud-init cache / logs - this is mainly cleaning out networking info
 sudo cloud-init clean --logs
